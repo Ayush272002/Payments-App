@@ -27,20 +27,20 @@ jobs:
 
     - name: Build and push user-app image
       run: |
-        docker build -t ayush27002/payments-app-user-app:latest -f ./Dockerfile.user-app ./Payments-App/
-        docker push ayush27002/payments-app-user-app:latest
+        docker build -t ayush272002/payments-app-user-app:latest -f ./Dockerfile.user-app ./Payments-App/
+        docker push ayush272002/payments-app-user-app:latest
 
     - name: Build and push bank-webhook image
       run: |
-        docker build -t ayush27002/payments-app-bank-webhook:latest -f ./Dockerfile.bank-webhook ./Payments-App/
-        docker push ayush27002/payments-app-bank-webhook:latest
+        docker build -t ayush272002/payments-app-bank-webhook:latest -f ./Dockerfile.bank-webhook ./Payments-App/
+        docker push ayush272002/payments-app-bank-webhook:latest
 
     - name: Verify user-app image by pulling
       run: |
-        docker pull ayush27002/payments-app-user-app:latest
-        docker images | grep ayush27002/payments-app-user-app
+        docker pull ayush272002/payments-app-user-app:latest
+        docker images | grep ayush272002/payments-app-user-app
 
     - name: Verify bank-webhook image by pulling
       run: |
-        docker pull ayush27002/payments-app-bank-webhook:latest
-        docker images | grep ayush27002/payments-app-bank-webhook
+        docker pull ayush272002/payments-app-bank-webhook:latest
+        docker images | grep ayush272002/payments-app-bank-webhook
