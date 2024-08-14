@@ -49,13 +49,13 @@ userRouter.post("/signup", async (c) => {
           create: {
             amount: 500000,
           },
-        }
+        },
       },
     });
 
     const jwt = await sign(
       { id: user.id, exp: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60 }, // 30 days
-      c.env.JWT_SECRET
+      c.env.JWT_SECRET,
     );
 
     setCookie(c, "auth_token", jwt, {
