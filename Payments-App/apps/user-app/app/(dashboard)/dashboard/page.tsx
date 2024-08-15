@@ -32,7 +32,7 @@ async function getUserData() {
   const totalMoneyIn =
     (user.OnRampTransaction.filter((t) => t.status === "Success").reduce(
       (acc, t) => acc + t.amount,
-      0
+      0,
     ) +
       user.receivedTransfers.reduce((acc, t) => acc + t.amount, 0)) /
     100;
