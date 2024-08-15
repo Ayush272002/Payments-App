@@ -33,12 +33,14 @@ async function getOnRampTransactions() {
       userId: Number(session?.user?.id),
     },
   });
-  return txns.map((t) => ({
-    time: t.startTime,
-    amount: t.amount,
-    status: t.status,
-    provider: t.provider,
-  }));
+  return txns
+    .map((t) => ({
+      time: t.startTime,
+      amount: t.amount,
+      status: t.status,
+      provider: t.provider,
+    }))
+    .sort((a, b) => b.time.getTime() - a.time.getTime());
 }
 
 export default async function () {

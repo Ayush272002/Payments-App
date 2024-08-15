@@ -19,7 +19,7 @@ const SUPPORTED_BANKS = [
 
 export const AddMoney = () => {
   const [redirectUrl, setRedirectUrl] = useState(
-    SUPPORTED_BANKS[0]?.redirectUrl,
+    SUPPORTED_BANKS[0]?.redirectUrl
   );
   const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || "");
   const [value, setValue] = useState(0);
@@ -37,10 +37,10 @@ export const AddMoney = () => {
         <Select
           onSelect={(value) => {
             setRedirectUrl(
-              SUPPORTED_BANKS.find((x) => x.name === value)?.redirectUrl || "",
+              SUPPORTED_BANKS.find((x) => x.name === value)?.redirectUrl || ""
             );
             setProvider(
-              SUPPORTED_BANKS.find((x) => x.name === value)?.name || "",
+              SUPPORTED_BANKS.find((x) => x.name === value)?.name || ""
             );
           }}
           options={SUPPORTED_BANKS.map((x) => ({
@@ -51,8 +51,11 @@ export const AddMoney = () => {
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
-              await createOnRampTransaction(provider, value);
-              window.location.href = redirectUrl || "";
+              const res = await createOnRampTransaction(provider, value);
+              if (res.token && res.userId) {
+                const finalRedirectUrl = `${redirectUrl}?token=${res.token}&amount={value}&user_identifier=${res.userId}`;
+                window.location.href = finalRedirectUrl;
+              }
             }}
           >
             Add Money

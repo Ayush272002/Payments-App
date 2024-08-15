@@ -32,7 +32,7 @@ async function getUserData() {
   const totalMoneyIn =
     (user.OnRampTransaction.filter((t) => t.status === "Success").reduce(
       (acc, t) => acc + t.amount,
-      0,
+      0
     ) +
       user.receivedTransfers.reduce((acc, t) => acc + t.amount, 0)) /
     100;
@@ -62,7 +62,9 @@ async function getUserData() {
     amount: t.amount,
     status: t.status,
     provider: t.provider,
-  })).slice(0, 5); // Only get the top 5 recent transactions
+  }))
+    .sort((a, b) => b.time.getTime() - a.time.getTime())
+    .slice(0, 5);
 
   return {
     name: user.name,

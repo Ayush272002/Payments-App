@@ -5,7 +5,12 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./heading" : "./src/Heading.tsx",
+    "./subheading" : "./src/SubHeading.tsx",
+    "./inputbox" : "./src/InputBox.tsx",
+    "./bottomwarning" : "./src/BottomWarning.tsx",
+    "./spinner" : "./src/Spinner.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
