@@ -1,17 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Run format and build for bank
-cd bank-complete
-echo "Running format and build for bank"
-npm run format && npm run build
-cd ..
-
-# Run format and build for Payments-App
-cd Payments-App
 echo "Running format and build for Payments-App"
 npm run format && npm run build
-cd ..
-
+git add -u
 
 echo "Linting and building completed successfully"

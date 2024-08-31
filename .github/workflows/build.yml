@@ -18,13 +18,10 @@ jobs:
         node-version: '20' 
         
     - name: Install Dependencies
-      working-directory: ./Payments-App
       run: npm install
       
     - name: Generate prisma client
-      working-directory: ./Payments-App
       run: npm run db:generate
       
     - name: Run Build
-      working-directory: ./Payments-App
       run: npm run build
