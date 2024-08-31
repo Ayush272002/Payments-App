@@ -1,0 +1,18 @@
+version: '3.8'
+
+services: 
+  user-app:
+    image: yush272002/payments-app-user-app:latest
+    environment:
+      - JWT_SECRET=http://localhost:8001
+      - NEXTAUTH_URL=http://localhost:3000
+      - DATABASE_URL=
+    ports:
+      - "3000:3000"
+
+  bank-webhook:
+    image: ayush272002/payments-app-bank-webhook:latest
+    environment:
+      - DATABASE_URL=
+    ports:
+      - "3002:3002"    
