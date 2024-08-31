@@ -7,13 +7,6 @@ import { P2pTransactions } from "../../../components/P2pTransactions";
 import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import { MoneyFlowCard } from "../../../components/MoneyFlowCard";
 
-interface OnRampTransaction {
-  status: string;
-  amount: number;
-  startTime: Date;
-  provider: string;
-}
-
 async function getUserData() {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -37,10 +30,11 @@ async function getUserData() {
   }
 
   const totalMoneyIn =
-    (user.OnRampTransaction.filter(
-      (t: OnRampTransaction) => t.status === "Success" ?? [],
-    ).reduce((acc, t) => acc + Number(t.amount), 0) +
-      user.receivedTransfers.reduce((acc, t) => acc + Number(t.amount), 0)) /
+    (user.OnRampTransaction.filter((t) => t.status === "Success").reduce(
+      (acc, t) => acc + t.amount,
+      0,
+    ) +
+      user.receivedTransfers.reduce((acc, t) => acc + t.amount, 0)) /
     100;
 
   const totalMoneyOut =
